@@ -1,0 +1,34 @@
+vector<int> repeatedNumber(const vector<int> &A) {
+    long long int n = A.size();
+    long long int s = (n*(n+1))/2;
+    // summation of square of a number
+    long long int sq = (n*(n+1)*(2*(n)+1))/6;
+    int SUM = 0;
+    int SQ = 0;
+    for(auto i:A){
+        long long int temp = (long long int)i;
+        SUM  = SUM + temp;
+        SQ   =  SQ + temp*temp;
+    }
+    vector<int>v;
+    long long int x = s - SUM;
+    long long int y = (sq - SQ)/x;
+    
+    long long int a = abs((x+y)/2);
+    long long int b = abs((x-y)/2);
+    if(s > SUM)
+    {
+        int A = (int)min(a,b);
+        int B = (int)max(a,b);
+        v.push_back(A);
+        v.push_back(B);
+    }
+    else
+    {
+        int A = (int)max(a,b);
+        int B = (int)min(a,b);
+         v.push_back(A);
+        v.push_back(B);
+    }
+    return v;
+}
